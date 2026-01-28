@@ -243,13 +243,11 @@ VITE_SITE_URL=https://whatsnewasia.com
 VITE_IMAGE_URL=https://storage.googleapis.com/gda_p01_storage/gda_wna_images
 ```
 
----
-
 ## Deployment Commands
 
 ```bash
 # Backend
-gcloud builds submit ./backend/whatsnewasia_be_revision \
+gcloud builds submit ./whatsnewasia_be_revision \
   --tag asia-southeast2-docker.pkg.dev/gda-p01/whatsnewasia-repo/backend \
   --region=asia-southeast2
 
@@ -258,7 +256,7 @@ gcloud run deploy whatsnewasia-backend \
   --region asia-southeast2
 
 # Frontend
-gcloud builds submit ./frontend/whatsnewasia_fe_revision \
+gcloud builds submit ./whatsnewasia_fe_revision \
   --tag asia-southeast2-docker.pkg.dev/gda-p01/whatsnewasia-repo/frontend \
   --region=asia-southeast2
 

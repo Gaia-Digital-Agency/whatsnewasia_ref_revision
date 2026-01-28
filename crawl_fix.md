@@ -18,7 +18,7 @@ Sitemap: https://2poiuy.gaiada.com/sitemap.xml
 
 **Impact:** Google could not locate the sitemap file, preventing proper indexing of all pages.
 
-**Fix Location:** `backend/whatsnewasia_be_revision/app.js` (line 161)
+**Fix Location:** `whatsnewasia_be_revision/app.js` (line 161)
 
 **Change:**
 ```javascript
@@ -28,8 +28,6 @@ Sitemap: ${process.env.SITEMAP_URL}
 // After
 Sitemap: ${process.env.SITEMAP_URL}/sitemap.xml
 ```
-
----
 
 ### 2. Missing Open Graph (OG) Meta Tags
 
@@ -41,11 +39,11 @@ Sitemap: ${process.env.SITEMAP_URL}/sitemap.xml
 **Impact:** When pages were shared on social media, they displayed without images, proper titles, or descriptions. Search engines also had less context about page content.
 
 **Fix Location:** All article template files:
-- `frontend/whatsnewasia_fe_revision/src/pages/Front/Templates/Single.tsx`
-- `frontend/whatsnewasia_fe_revision/src/pages/Front/Templates/SingleEvent.tsx`
-- `frontend/whatsnewasia_fe_revision/src/pages/Front/Templates/SingleJob.tsx`
-- `frontend/whatsnewasia_fe_revision/src/pages/Front/Templates/SingleHousing.tsx`
-- `frontend/whatsnewasia_fe_revision/src/pages/Front/Templates/Home.tsx`
+- `whatsnewasia_fe_revision/src/pages/Front/Templates/Single.tsx`
+- `whatsnewasia_fe_revision/src/pages/Front/Templates/SingleEvent.tsx`
+- `whatsnewasia_fe_revision/src/pages/Front/Templates/SingleJob.tsx`
+- `whatsnewasia_fe_revision/src/pages/Front/Templates/SingleHousing.tsx`
+- `whatsnewasia_fe_revision/src/pages/Front/Templates/Home.tsx`
 
 **Tags Added:**
 ```jsx
@@ -60,8 +58,6 @@ Sitemap: ${process.env.SITEMAP_URL}/sitemap.xml
 <meta name="twitter:description" content="Article description" />
 <meta name="twitter:image" content="https://api.site.com/path/to/image.jpg" />
 ```
-
----
 
 ### 3. Missing Canonical URLs
 
@@ -79,8 +75,6 @@ Sitemap: ${process.env.SITEMAP_URL}/sitemap.xml
 <link rel="canonical" href="https://site.com/country/category/article-slug" />
 ```
 
----
-
 ### 4. Article Listing Dates Not Displaying
 
 **Problem:** Article listing dates were not showing up on the frontend. The backend was returning dates in a non-standard format that JavaScript could not parse.
@@ -94,7 +88,7 @@ JavaScript's `new Date()` cannot parse this format, resulting in "Invalid Date".
 
 **Impact:** All article listing pages (Events, Deals, Jobs, Directory, Overseas) showed no dates because `formatPublished()` returned undefined when date parsing failed.
 
-**Fix Location:** `backend/whatsnewasia_be_revision/src/services/article.service.js` (5 locations)
+**Fix Location:** `whatsnewasia_be_revision/src/services/article.service.js` (5 locations)
 
 **Change:**
 ```javascript
@@ -113,16 +107,14 @@ localTimeCreated.toFormat("yyyy-MM-dd'T'HH:mm:ssZZ")
 - Consistent across all browsers and environments
 - Includes timezone information correctly
 
----
-
 ## Environment Variables Added
 
 A new environment variable was added to support canonical URLs and OG tags:
 
 **Files Modified:**
-- `frontend/whatsnewasia_fe_revision/.env`
-- `frontend/whatsnewasia_fe_revision/.env.production`
-- `frontend/whatsnewasia_fe_revision/.env.sample`
+- `whatsnewasia_fe_revision/.env`
+- `whatsnewasia_fe_revision/.env.production`
+- `whatsnewasia_fe_revision/.env.sample`
 
 **Variable Added:**
 ```
@@ -134,24 +126,20 @@ This variable is used to construct full URLs for:
 - `og:url` tags
 - Twitter card URLs
 
----
-
 ## Summary of Files Modified
 
 | File | Change |
 |------|--------|
-| `backend/whatsnewasia_be_revision/app.js` | Fixed sitemap URL in robots.txt |
-| `backend/whatsnewasia_be_revision/src/services/article.service.js` | Fixed date format to ISO 8601 |
-| `frontend/.env` | Added VITE_SITE_URL |
-| `frontend/.env.production` | Added VITE_SITE_URL |
-| `frontend/.env.sample` | Added VITE_SITE_URL |
-| `frontend/src/pages/Front/Templates/Single.tsx` | Added OG tags, Twitter cards, canonical URL |
-| `frontend/src/pages/Front/Templates/SingleEvent.tsx` | Added OG tags, Twitter cards, canonical URL |
-| `frontend/src/pages/Front/Templates/SingleJob.tsx` | Added OG tags, Twitter cards, canonical URL |
-| `frontend/src/pages/Front/Templates/SingleHousing.tsx` | Added OG tags, Twitter cards, canonical URL |
-| `frontend/src/pages/Front/Templates/Home.tsx` | Added OG tags, canonical URL |
-
----
+| `whatsnewasia_be_revision/app.js` | Fixed sitemap URL in robots.txt |
+| `whatsnewasia_be_revision/src/services/article.service.js` | Fixed date format to ISO 8601 |
+| `whatsnewasia_fe_revision/.env` | Added VITE_SITE_URL |
+| `whatsnewasia_fe_revision/.env.production` | Added VITE_SITE_URL |
+| `whatsnewasia_fe_revision/.env.sample` | Added VITE_SITE_URL |
+| `whatsnewasia_fe_revision/src/pages/Front/Templates/Single.tsx` | Added OG tags, Twitter cards, canonical URL |
+| `whatsnewasia_fe_revision/src/pages/Front/Templates/SingleEvent.tsx` | Added OG tags, Twitter cards, canonical URL |
+| `whatsnewasia_fe_revision/src/pages/Front/Templates/SingleJob.tsx` | Added OG tags, Twitter cards, canonical URL |
+| `whatsnewasia_fe_revision/src/pages/Front/Templates/SingleHousing.tsx` | Added OG tags, Twitter cards, canonical URL |
+| `whatsnewasia_fe_revision/src/pages/Front/Templates/Home.tsx` | Added OG tags, canonical URL |
 
 ## Testing Recommendations
 
@@ -186,7 +174,6 @@ This variable is used to construct full URLs for:
    ```
    Deploy updated frontend and backend code.
 
----
 
 ## Additional SEO Recommendations (Future)
 

@@ -20,7 +20,7 @@ gcloud run services logs read whatsnewasia-frontend --region asia-southeast2
 
 ```bash
 # Build and push image (run from project root)
-gcloud builds submit ./backend/whatsnewasia_be_revision \
+gcloud builds submit ./whatsnewasia_be_revision \
   --tag asia-southeast2-docker.pkg.dev/gda-p01/whatsnewasia-repo/backend \
   --region=asia-southeast2
 
@@ -34,7 +34,7 @@ gcloud run deploy whatsnewasia-backend \
 
 ```bash
 # Build and push image (run from project root)
-gcloud builds submit ./frontend/whatsnewasia_fe_revision \
+gcloud builds submit ./whatsnewasia_fe_revision \
   --tag asia-southeast2-docker.pkg.dev/gda-p01/whatsnewasia-repo/frontend \
   --region=asia-southeast2
 

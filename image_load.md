@@ -58,7 +58,7 @@ After making these changes, redeploy the frontend:
 
 ```bash
 # Build and push frontend image
-gcloud builds submit ./frontend/whatsnewasia_fe_revision \
+gcloud builds submit ./whatsnewasia_fe_revision \
   --tag asia-southeast2-docker.pkg.dev/gda-p01/whatsnewasia-repo/frontend \
   --region=asia-southeast2
 

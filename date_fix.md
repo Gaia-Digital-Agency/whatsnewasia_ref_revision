@@ -47,7 +47,7 @@ localTimeCreated.toFormat("yyyy-MM-dd'T'HH:mm:ssZZ")
 
 ## File Modified
 
-**File:** `backend/whatsnewasia_be_revision/src/services/article.service.js`
+**File:** `whatsnewasia_be_revision/src/services/article.service.js`
 
 **Locations changed (5 occurrences):**
 - Lines ~1176-1184
@@ -85,7 +85,7 @@ After deployment, verify dates display correctly:
 
 The frontend parsing happens in:
 
-**`frontend/src/lib/utils/format.ts`**
+**`whatsnewasia_fe_revision/src/lib/utils/format.ts`**
 
 ```typescript
 export const formatPublished = (inputDate: string | undefined | number) => {
@@ -99,5 +99,3 @@ export const formatPublished = (inputDate: string | undefined | number) => {
     return formatted  // Returns "27 January 2026"
 }
 ```
-
-No frontend changes were needed - the fix is entirely backend-side.

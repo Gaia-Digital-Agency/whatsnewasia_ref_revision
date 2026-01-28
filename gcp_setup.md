@@ -60,7 +60,7 @@ From the project root directory:
 cd /path/to/whatsnewasia
 
 # Build and push backend image
-gcloud builds submit ./backend \
+gcloud builds submit ./whatsnewasia_be_revision \
     --tag us-central1-docker.pkg.dev/YOUR_PROJECT_ID/whatsnewasia-repo/backend
 
 # Deploy to Cloud Run
@@ -97,7 +97,7 @@ Connect to Cloud SQL and run migrations:
 cloud-sql-proxy YOUR_PROJECT_ID:us-central1:whatsnewasia-db
 
 # In another terminal, run migrations
-cd backend/whatsnewasia_be_revision
+cd whatsnewasia_be_revision
 DATABASE_HOST=127.0.0.1 \
 DATABASE_USER=appuser \
 DATABASE_PASSWORD=YOUR_APP_USER_PASSWORD \
@@ -114,7 +114,7 @@ First, update the frontend environment with your backend URL:
 
 ```bash
 # Create production env file
-cat > frontend/whatsnewasia_fe_revision/.env.production << EOF
+cat > whatsnewasia_fe_revision/.env.production << EOF
 VITE_WHATSNEW_BACKEND_URL=https://whatsnewasia-backend-xxxxx-uc.a.run.app
 EOF
 ```
@@ -125,7 +125,7 @@ Then deploy:
 cd /path/to/whatsnewasia
 
 # Build and push frontend image
-gcloud builds submit ./frontend \
+gcloud builds submit ./whatsnewasia_fe_revision \
     --tag us-central1-docker.pkg.dev/YOUR_PROJECT_ID/whatsnewasia-repo/frontend
 
 # Deploy to Cloud Run
