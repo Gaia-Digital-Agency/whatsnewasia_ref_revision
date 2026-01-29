@@ -28,6 +28,9 @@ gcloud builds submit ./whatsnewasia_be_revision \
 gcloud run deploy whatsnewasia-backend \
   --image asia-southeast2-docker.pkg.dev/gda-p01/whatsnewasia-repo/backend \
   --region asia-southeast2
+
+# Simpler Deploy Script
+  gcloud run deploy whatsnewasia-backend --source . --region asia-southeast2 
 ```
 
 ## Redeploy Frontend
@@ -42,7 +45,13 @@ gcloud builds submit ./whatsnewasia_fe_revision \
 gcloud run deploy whatsnewasia-frontend \
   --image asia-southeast2-docker.pkg.dev/gda-p01/whatsnewasia-repo/frontend \
   --region asia-southeast2
+
+# Simpler Deploy Script
+gcloud run deploy whatsnewasia-frontend --source . --region asia-southeast2
+
 ```
+
+
 
 ## Update Environment Variables
 

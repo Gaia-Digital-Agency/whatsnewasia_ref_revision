@@ -5,8 +5,8 @@ Cloud SQL: whatsnewasia-db-asia (MySQL 8)
 Artifact Registry: whatsnewasia-repo
 Credentials (Save these!)
 
-Database SUer: root
-Database Password: dsKqGW0nA6sEwJK59rZk
+Database User: root
+Database Password: admin123
 JWT Secret: iKMhOSum5wnyxzVre8N+mBJUuSRPqPBuc8J8I0/2tWo=
 JWT Refresh Secret: r8pxbqQu6PEsEc3D28EJJdWWhap2mRL2sUuV+AVq4Rk=
 Next Steps
