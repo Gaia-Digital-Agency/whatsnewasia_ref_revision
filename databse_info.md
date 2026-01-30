@@ -265,9 +265,55 @@ npm run db:seed
 
 ---
 
+## Cloud Run Production Environment Variables
+
+### Backend (whatsnewasia-backend)
+
+These environment variables must be set in Cloud Run for the backend to work:
+
+```env
+# Required
+NODE_ENV=production
+PORT=8080
+
+# Database (Cloud SQL)
+DATABASE_HOST=/cloudsql/PROJECT_ID:asia-southeast2:whatsnewasia-db-asia
+DATABASE_USER=root
+DATABASE_PASSWORD=admin123
+DATABASE_PRODUCTION=whatsnewasia
+
+# CORS - IMPORTANT: Must include frontend URLs
+FRONTEND_URL=https://whatsnewasia-frontend-850916858221.asia-southeast2.run.app,https://whatsnewasia.com
+
+# Authentication
+JWT_SECRET=iKMhOSum5wnyxzVre8N+mBJUuSRPqPBuc8J8I0/2tWo=
+JWT_REFRESH_SECRET=r8pxbqQu6PEsEc3D28EJJdWWhap2mRL2sUuV+AVq4Rk=
+
+# Image Storage
+IMAGE_URL=https://storage.googleapis.com/gda_p01_storage/gda_wna_images
+```
+
+### Update Backend CORS via gcloud
+
+```bash
+gcloud run services update whatsnewasia-backend \
+  --region asia-southeast2 \
+  --set-env-vars "FRONTEND_URL=https://whatsnewasia-frontend-850916858221.asia-southeast2.run.app,https://whatsnewasia.com"
+```
+
+### CORS Configuration Location
+
+| File | Line(s) | Purpose |
+|------|---------|---------|
+| `whatsnewasia_be_revision/app.js` | 76-82 | CORS allowed origins from `FRONTEND_URL` |
+| `whatsnewasia_be_revision/app.js` | 84-95 | CORS middleware configuration |
+
+---
+
 ## Notes
 
 - Always use environment variables for sensitive data in production
 - The application automatically detects Cloud SQL connections via the `/cloudsql/` prefix
 - Image uploads in development are stored locally in `/uploads` directory
 - Production images should be uploaded to GCS bucket directly or via admin interface
+- **CORS**: Backend must have `FRONTEND_URL` set to allow frontend origins
